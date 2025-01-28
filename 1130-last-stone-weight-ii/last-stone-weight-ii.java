@@ -1,34 +1,31 @@
 class Solution {
     public int lastStoneWeightII(int[] stones) {
-        int totalSum = 0;
-        for(int i = 0; i < stones.length; i++)
+        int stoneSum = 0;
+        for (int stone : stones)
         {
-            totalSum += stones[i];
+            stoneSum += stone;
         }
 
-        int target = totalSum / 2;
+        int target = stoneSum / 2;
+        int n = stones.length;
 
-        int[][] dp = new int[stones.length][target + 1];
-        for(int[] row : dp)
+        int[][] dp = new int[n + 1][target + 1];
+
+        for (int i = 1; i <= n; i++) 
         {
-            Arrays.fill(row, -1);
+            for (int t = 0; t <= target; t++) 
+            {
+                if (t >= stones[i - 1]) 
+                {
+                    dp[i][t] = Math.max(dp[i - 1][t], dp[i - 1][t - stones[i - 1]] + stones[i - 1]);
+                }
+                else 
+                {
+                    dp[i][t] = dp[i - 1][t];
+                }
+            }
         }
-        
-        return backtrack(0, 0, stones, totalSum , target, dp);
-    }
 
-    int backtrack(int index, int currentSum, int[] stones, int totalSum, int target, int[][] dp)
-    {
-        if(currentSum >= target || index == stones.length)
-        {
-            return Math.abs(currentSum - (totalSum - currentSum));
-        }
-
-        if(dp[index][currentSum] != -1) return dp[index][currentSum];
-
-        return dp[index][currentSum] = Math.min(
-            backtrack(index + 1, currentSum + stones[index], stones, totalSum, target, dp),
-            backtrack(index + 1, currentSum, stones, totalSum, target, dp)
-        );
+        return stoneSum - 2 * dp[n][target];
     }
 }
