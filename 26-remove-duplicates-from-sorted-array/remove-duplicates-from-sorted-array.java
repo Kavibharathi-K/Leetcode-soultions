@@ -1,16 +1,14 @@
 class Solution {
     public int removeDuplicates(int[] nums) {
-        int storePointer = 1;
         int pointer = 1;
 
-        while(pointer < nums.length)
+        for(int i = 1; i < nums.length; i++)
         {
-            if(nums[pointer] != nums[pointer - 1])
+            if(nums[i] != nums[i - 1])
             {
-                nums[storePointer++] = nums[pointer];
+                nums[pointer++] = nums[i];
             }
-            pointer++;
         }
-        return storePointer--;
+        return pointer;
     }
 }
