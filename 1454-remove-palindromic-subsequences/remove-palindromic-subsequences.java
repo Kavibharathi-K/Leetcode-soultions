@@ -1,0 +1,17 @@
+class Solution {
+    public int removePalindromeSub(String s) {
+        if(isPalindrome(s)) return 1;
+        return 2;
+    }
+
+    boolean isPalindrome(String str) {
+        int left = 0;
+        int right = str.length() - 1;
+
+        while(left <= right)
+        {
+            if(str.charAt(left++) != str.charAt(right--)) return false;
+        }
+        return true;
+    }
+}
