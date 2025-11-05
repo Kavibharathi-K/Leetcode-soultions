@@ -7,9 +7,6 @@ class Solution {
             if(nums[i] != 0) nums[pointer++] = nums[i];
         }
 
-        while(pointer < nums.length)
-        {
-            nums[pointer++] = 0;
-        }
+        while(pointer < nums.length) nums[pointer++] = 0;
     }
 }
