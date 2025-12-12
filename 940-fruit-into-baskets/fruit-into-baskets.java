@@ -1,18 +1,18 @@
 class Solution {
-    public int totalFruit(int[] nums) {
-        Map<Integer, Integer> basket = new HashMap<>();
+    public int totalFruit(int[] fruits) {
+        HashMap<Integer, Integer> basket = new HashMap();
         int left = 0;
         int right = 0;
         int result = 0;
 
-        while(right < nums.length)
+        while(right < fruits.length)
         {
-            basket.put(nums[right], basket.getOrDefault(nums[right], 0) + 1);
+            basket.put(fruits[right], basket.getOrDefault(fruits[right], 0) + 1);
 
             while(basket.size() > 2)
             {
-                basket.put(nums[left], basket.get(nums[left]) - 1);
-                basket.remove(nums[left], 0);
+                basket.put(fruits[left], basket.get(fruits[left]) - 1);
+                if(basket.get(fruits[left]) == 0) basket.remove(fruits[left]);
                 left++;
             }
             result = Math.max(result, right - left + 1);
