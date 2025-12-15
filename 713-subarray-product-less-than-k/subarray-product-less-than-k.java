@@ -7,7 +7,7 @@ class Solution {
         for(int right = 0; right < nums.length; right++)
         {
             currentProduct *= nums[right];
-
+            
             while(currentProduct >= k && left <= right)
             {
                 currentProduct /= nums[left];
