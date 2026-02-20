@@ -1,11 +1,17 @@
 class Solution {
     public int removeElement(int[] nums, int val) {
+        int next = 0;
         int pointer = 0;
 
-        for(int i = 0; i < nums.length; i++)
+        while(pointer < nums.length)
         {
-            if(nums[i] != val) nums[pointer++] = nums[i];
+            if(nums[pointer] != val)
+            {
+                nums[next] = nums[pointer];
+                next++;
+            }
+            pointer++;
         }
-        return pointer;
+        return next;
     }
 }
