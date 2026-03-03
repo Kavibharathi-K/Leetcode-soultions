@@ -1,21 +1,19 @@
 class Solution {
     public int maxArea(int[] height) {
-        int max = 0;
-        int currentArea = 0;
+        int result = 0;
+        int left = 0;
+        int right = height.length - 1;
 
-        int pointer1 = 0;
-        int pointer2 = height.length - 1;
-
-        while(pointer1 < pointer2)
+        while(left <= right)
         {
-            int h = Math.min(height[pointer1], height[pointer2]);
-            int w = pointer2 - pointer1;
-            currentArea = h * w;
-            max = Math.max(currentArea, max);
+            int h = Math.min(height[left], height[right]);
+            int w = right - left;
+            int area = h * w;
+            result = Math.max(result, area);
 
-            while(pointer1 < pointer2 && height[pointer1] <= h) pointer1++;
-            while(pointer1 < pointer2 && height[pointer2] <= h) pointer2--;
+            while(left <= right && height[left] <= h) left++;
+            while(left <= right && height[right] <= h) right--;
         }
-        return max;
+        return result;
     }
 }
