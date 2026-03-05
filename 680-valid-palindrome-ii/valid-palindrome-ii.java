@@ -1,23 +1,28 @@
 class Solution {
     public boolean validPalindrome(String s) {
-        int start = 0;
-        int end = s.length() - 1;
+        int left = 0;
+        int right = s.length() - 1;
+        int count = 0;
 
-        while(start < end)
+        while(left <= right)
         {
-            if(s.charAt(start) == s.charAt(end))
+            if(count > 1) return false;
+            if(s.charAt(left) == s.charAt(right))
             {
-                start++;
-                end--;
+                left++;
+                right--;
             }
-            else 
+            else
             {
-                return (isPal(start + 1, end, s) || isPal(start, end - 1, s));
+               boolean possible1 = isPalindrome(left, right - 1, s);
+               boolean possible2 = isPalindrome(left + 1, right, s);
+               return possible1 || possible2;
             }
         }
         return true;
     }
-    boolean isPal(int start, int end, String s)
+
+    boolean isPalindrome(int start, int end, String s)
     {
         while(start < end)
         {
