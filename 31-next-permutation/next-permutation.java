@@ -5,7 +5,7 @@ class Solution {
 
         for(int i = nums.length - 1; i >= 1; i--)
         {
-            if(nums[i] > nums[i - 1])
+            if(nums[i - 1] < nums[i])
             {
                 index1 = i - 1;
                 break;
@@ -13,34 +13,35 @@ class Solution {
         }
         if(index1 == -1)
         {
-            reverse(0, nums.length -1, nums);
+            reverse(0, nums.length - 1, nums);
+            return;
         }
-        else 
+
+        for(int i = nums.length - 1; i >= 0; i--)
         {
-            for(int i = nums.length - 1; i >= index1; i--)
+            if(nums[i] > nums[index1]) 
             {
-                if (nums[i] > nums[index1])
-                {
-                    index2 = i;
-                    break;
-                }
+                index2 = i;
+                break;
             }
-            int temp = nums[index1];
-            nums[index1] = nums[index2];
-            nums[index2] = temp;
-            reverse(index1 + 1, nums.length - 1, nums);
         }
+
+        int temp = nums[index1];
+        nums[index1] = nums[index2];
+        nums[index2] = temp;
+        
+        reverse(index1 + 1, nums.length - 1, nums);
     }
-    void reverse(int start, int end, int[] arr)
+
+    public void reverse(int start, int end, int[] nums)
     {
         while(start <= end)
         {
-            int temp = arr[start];
-            arr[start] = arr[end];
-            arr[end] = temp;
-            start++;
+            int temp = nums[start];
+            nums[start] = nums[end];
+            nums[end] = temp;
+            start++; 
             end--;
         }
-
     }
 }
