@@ -1,35 +1,32 @@
 class Solution {
     public int maxVowels(String s, int k) {
+        HashSet<Character> set = new HashSet();
+        set.add('a');
+        set.add('e');
+        set.add('i');
+        set.add('o');
+        set.add('u');
+
         int left = 0;
         int right = 0;
         int currentCount = 0;
         int result = 0;
-        String vowels = "aeiou";
 
         while(right < s.length())
         {
-            if(vowels.indexOf(s.charAt(right)) != -1) currentCount++;
-
-            if(right - left + 1 == k)
+            if(right - left + 1 < k)
             {
-                result = Math.max(result, currentCount);
-                if(vowels.indexOf(s.charAt(left)) != -1) currentCount--;
-                left++;
-                right++;
-            }
-            else 
-            {
+                if(set.contains(s.charAt(right))) currentCount++;
                 right++;
                 continue;
             }
+
+            if(set.contains(s.charAt(right))) currentCount++;
+            result = Math.max(result, currentCount);
+            if(set.contains(s.charAt(left))) currentCount--;
+            left++;
+            right++;
         }
         return result;
     }
 }
-// left = a right = c
-// left = b right = i
-// left = c right = i
-// left = i right = i
-// left = i right = d
-// left = i right = e
-// left = d right = f
