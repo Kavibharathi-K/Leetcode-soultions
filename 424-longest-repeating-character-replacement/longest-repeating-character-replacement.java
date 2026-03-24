@@ -8,15 +8,16 @@ class Solution {
 
         while(right < s.length())
         {
-            freq[s.charAt(right) - 'A']++;
-            currentMax = Math.max(currentMax, freq[s.charAt(right) - 'A']);
+            int fr = s.charAt(right) - 'A';
+            freq[fr]++;
+            currentMax = Math.max(currentMax, freq[fr]);
 
             while((right - left + 1) - currentMax > k)
             {
                 freq[s.charAt(left) - 'A']--;
                 left++;
             }
-            result = Math.max(result, right - left + 1);
+            result = Math.max(result, (right - left + 1));
             right++;
         }
         return result;
