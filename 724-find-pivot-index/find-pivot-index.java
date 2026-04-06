@@ -8,7 +8,6 @@ class Solution {
             prefixSum[i] = prefixSum[i - 1] + nums[i];
         }
 
-        System.out.println(Arrays.toString(prefixSum));
         for(int i = 0; i < nums.length; i++)
         {
             int leftSum = prefixSum[i] - nums[i];
