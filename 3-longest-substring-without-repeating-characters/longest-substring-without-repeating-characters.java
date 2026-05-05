@@ -10,10 +10,10 @@ class Solution {
             if(!set.contains(s.charAt(right)))
             {
                 set.add(s.charAt(right));
-                result = Math.max(result, right - left + 1);
+                result = Math.max(result, set.size());
                 right++;
             }
-            else 
+            else
             {
                 set.remove(s.charAt(left));
                 left++;
