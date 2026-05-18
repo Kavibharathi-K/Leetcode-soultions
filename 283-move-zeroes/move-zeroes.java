@@ -1,17 +1,21 @@
 class Solution {
     public void moveZeroes(int[] nums) {
-        int next = 0;
-        int pointer = 0;
+        int p1 = 0;
+        int p2 = 0;
 
-        while(pointer < nums.length)
+        while(p2 < nums.length)
         {
-            if(nums[pointer] != 0)
+            if(nums[p2] != 0)
             {
-                nums[next] = nums[pointer];
-                next++;
+                nums[p1] = nums[p2];
+                p1++;
             }
-            pointer++;
+            p2++;
         }
-        while(next < nums.length) nums[next++] = 0;
+        while(p1 < nums.length)
+        {
+            nums[p1] = 0;
+            p1++;
+        }
     }
 }
